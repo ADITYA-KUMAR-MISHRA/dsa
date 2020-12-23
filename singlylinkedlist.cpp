@@ -67,6 +67,20 @@ node * pushhead(node * head, int data){
     temp->next = head;
     return temp;
 }
+//function to remove a node in between
+void remove(node * head,int num){
+    int i = 0;
+    for(;i<num;){
+        if(head->next == NULL){
+            cout<<"out of bounds\n";
+            break;
+        }
+        head = head->next;
+        i++;
+    }
+    if(i == num-1)  head->next = (head->next)->next;
+}
+
 
 
 int main(){
@@ -74,11 +88,12 @@ int main(){
     node * tail =  NULL;                               //tail of the linked list
     head = (node*)malloc(sizeof(node));                //allocation of memory for head node 
     tail = head;                                        //initialy head == tail
+    tail = pushback_t(tail,1);
+    tail = pushback_t(tail,2);
+    tail = pushback_h(head,3);
     tail = pushback_t(tail,4);
-    tail = pushback_t(tail,9);
-    tail = pushback_h(head,69);
-    tail = pushback_t(tail,50);
     insert(head,1234,2);
-    head =  pushhead(head,92);
+    head =  pushhead(head,-1);
+    remove(head,3);
     print(head);
 }
